@@ -1,14 +1,13 @@
-const isNumber = (number) => (isNaN(number) ? false : true);
+const isNumber = (number) => !isNaN(number);
 const isValidNumericCode = (code) => code.every(isNumber);
-const convertToNumericCode = (code) => code.map((number) => +number);
 
-const getCode = () => {
+const getProgramm = () => {
   const code = prompt("enter the code:").trim().split(" ");
-  const numericConvertedCode = convertToNumericCode(code);
+  const numericConvertedCode = code.map((number) => +number);
 
   return isValidNumericCode(numericConvertedCode)
     ? numericConvertedCode
-    : getCode();
+    : getProgramm();
 };
 
-console.log(getCode());
+console.log(getProgramm());
