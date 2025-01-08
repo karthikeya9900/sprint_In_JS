@@ -15,7 +15,9 @@ export const getOperation = (program, currentIndex) => {
 
 export const updateProgram = (program, currentIndex, value) => {
   const prog = [...program];
-  prog[prog[currentIndex]] = value;
+  const targerLocation = prog[currentIndex];
+
+  prog[targerLocation] = value;
 
   return prog;
 };

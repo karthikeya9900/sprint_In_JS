@@ -16,15 +16,22 @@ import { updateProgram } from "./exugution.js";
 export const copy = (program, index) => {
   const copyValueIndex = program[index + 1];
   const copyValue = program[copyValueIndex];
-  updateProgram(program, index + 2, copyValue);
-  return index + 3;
+
+  const updatedProgram = updateProgram(program, index + 2, copyValue);
+
+  return [updatedProgram, index + 3][0];
 };
 
 export const add = (program, index) => {
-  const result = program[index + 1] + program[index + 2];
-  updateProgram(program, index + 3, result);
+  const prog = [...program];
+  const value1 = prog[prog[index + 1]];
+  const value2 = prog[prog[index + 2]];
+  const sumValue = value1 + value2;
 
-  return index + 4;
+  const updatedProgram = updateProgram(program, index + 3, sumValue);
+  console.log(updatedProgram);
+
+  return [updatedProgram, index + 4][0];
 };
 
 export const sub = (program, index) => {
