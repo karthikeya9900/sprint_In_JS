@@ -29,7 +29,6 @@ export const add = (program, index) => {
   const sumValue = value1 + value2;
 
   const updatedProgram = updateProgram(program, index + 3, sumValue);
-  console.log(updatedProgram);
 
   return [updatedProgram, index + 4][0];
 };
