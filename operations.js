@@ -11,12 +11,13 @@
 9 -> stop ---> 1 params                [ stop ] it stops the programm exegution 
 */
 
-import { updateProgram } from "./sprintInJS";
+import { updateProgram } from "./exugution.js";
 
 export const copy = (program, index) => {
-  const value = program[index + 1];
-  updateProgram(program[index + 2], value);
-  return index + 2;
+  const copyValueIndex = program[index + 1];
+  const copyValue = program[copyValueIndex];
+  updateProgram(program, index + 2, copyValue);
+  return index + 3;
 };
 
 export const add = (program, index) => {

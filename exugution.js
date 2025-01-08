@@ -13,8 +13,12 @@ export const getOperation = (program, currentIndex) => {
   return operations[program[currentIndex]];
 };
 
-export const updateProgram = (program, currentIndex, value) =>
-  (program[currentIndex] = value);
+export const updateProgram = (program, currentIndex, value) => {
+  const prog = [...program];
+  prog[prog[currentIndex]] = value;
+
+  return prog;
+};
 
 const performOperation = (program, currentIndex) => {
   const operation = getOperation(program, currentIndex);
