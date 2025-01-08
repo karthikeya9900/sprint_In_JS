@@ -34,10 +34,14 @@ export const add = (program, index) => {
 };
 
 export const sub = (program, index) => {
-  const result = program[index + 1] - program[index + 2];
-  updateProgram(program, index + 3, result);
+  const prog = [...program];
+  const value1 = prog[prog[index + 1]];
+  const value2 = prog[prog[index + 2]];
+  const sumValue = value1 - value2;
 
-  return index + 4;
+  const updatedProgram = updateProgram(program, index + 3, sumValue);
+
+  return [updatedProgram, index + 4][0];
 };
 
 export const jump = (program, index) => {
