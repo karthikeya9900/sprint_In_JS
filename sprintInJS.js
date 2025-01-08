@@ -19,28 +19,40 @@
 
 */
 
-import { getOperation } from "./getOperation.js";
-import { getProgram } from "./getProgrammModule.js";
+/*
+0 -> copy ---> 3 params                [ op value  destinstion ]
+1 -> add  ---> 4 params                [ op val1 val2 destination ]
+2 -> sub  ---> 4 params                [ op val1 val2 destination ] 
+3 -> jump ---> 2 params                [ op destination]
+4 -> jump If Equal  ---> 4 params      [ op val1 val2 destination ]
+5 -> jump If Less Than  ---> 4 params  [ op val1 val2 destination ]
+6 -> put ---> 3 params                 [ op value destination ]
+7 -> mul ---> 4 params                 [ op val1 val2 destination ]
+8 -> div ---> 4 params                 [ op val1 val2 destination ]
+9 -> stop ---> 1 params                [ stop ] 
+*/
 
-export const updateProgram = (program, currentIndex, value) =>
-  (program[currentIndex] = value);
+import { exeguteProgram } from "./exugution.js";
 
-const performOperation = (program, currentIndex) => {
-  const operation = getOperation(program, currentIndex);
-  console.log(operation);
-  return currentIndex + operation[1];
+const isNumber = (number) => !isNaN(number);
+const isValidNumericCode = (code) => code.every(isNumber);
+
+const getProgramFromUser = () => {
+  const code = prompt("enter the code:").trim().split(" ");
+  const numericConvertedCode = code.map((number) => +number);
+
+  return isValidNumericCode(numericConvertedCode)
+    ? numericConvertedCode
+    : getProgramFromUser();
 };
 
 const runSprint = () => {
-  let program = getProgram();
-  let currentIndex = 0;
-  let opcode = program[0];
-  while (opcode < 9) {
-    opcode = program[currentIndex];
-    currentIndex = performOperation(program, currentIndex);
-  }
+  const program = getProgramFromUser();
+  // console.log(program);
+
+  return exeguteProgram(program);
 };
 
-// runSprint();
+console.log(runSprint());
 
-console.log(performOperation([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 1));
+// console.log(performOperation([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 1));
